@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liquid Glass UI Kit – iOS Style für Websites</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="src/liquid-glass.css" />
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", Inter, system-ui, sans-serif; }
+  html { scroll-behavior: smooth; }
+  .doc-h2 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em; }
+  .doc-p { opacity: .7; font-size: .95rem; }
+  .demo-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; opacity: .55; margin-bottom: .6rem; }
+  section { scroll-margin-top: 110px; }
+</style>
+</head>
+<body class="min-h-screen">
+
+<div class="ios-wallpaper"></div>
+<div class="glass-toast-stack" id="lg-toast-stack"></div>
+<div class="glass-overlay" id="lg-overlay"></div>
+
+<!-- Sheet -->
+<div class="glass-sheet" id="lg-sheet">
+  <div class="glass-sheet-handle"></div>
+  <h3 class="font-bold text-lg">Bottom Sheet</h3>
+  <p class="text-sm opacity-70 mt-1">So sieht ein iOS Sheet als Glas-Element aus. Schließen per Klick daneben oder ESC.</p>
+  <div class="flex gap-2 mt-4">
+    <button class="glass-btn glass-btn-primary flex-1" data-lg-close>Fertig</button>
+    <button class="glass-btn flex-1" data-lg-close>Abbrechen</button>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="glass-modal" id="lg-modal">
+  <div class="text-4xl">🔔</div>
+  <h3 class="font-bold text-lg mt-2">Mitteilungen erlauben?</h3>
+  <p class="text-sm opacity-70 mt-1">Klassischer iOS-Dialog im Liquid Glass Stil.</p>
+  <div class="grid grid-cols-2 gap-2 mt-4">
+    <button class="glass-btn" data-lg-close>Nicht erlauben</button>
+    <button class="glass-btn glass-btn-primary" data-lg-close>Erlauben</button>
+  </div>
+</div>
+
+<div class="max-w-6xl mx-auto px-4 pb-24">
+
+  <!-- NAVBAR -->
+  <nav class="glass-navbar mt-4">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-2xl flex items-center justify-center text-white font-bold" style="background:linear-gradient(135deg,#0a84ff,#5e5ce6)">◍</div>
+      <div>
+        <div class="font-bold leading-none">Liquid Glass Kit</div>
+        <div class="text-xs opacity-60">iOS 26 Style · v1.0</div>
+      </div>
+    </div>
+    <div class="hidden md:flex items-center gap-5 text-sm font-medium opacity-80">
+      <a href="#elemente" class="hover:opacity-100">Elemente</a>
+      <a href="#installation" class="hover:opacity-100">Installation</a>
+      <a href="#verwendung" class="hover:opacity-100">Verwendung</a>
+      <a href="#referenz" class="hover:opacity-100">Referenz</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button class="glass-btn glass-btn-sm" data-lg-theme><span data-lg-theme-label>🌙 Dunkel</span></button>
+      <a href="#installation" class="glass-btn glass-btn-primary glass-btn-sm">Start →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="glass glass-strong mt-6 p-8 md:p-12 text-center">
+    <div class="inline-flex glass-chip mb-4"><span class="glass-dot"></span> HTML · Tailwind · CSS · JS – Copy & Paste ready</div>
+    <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">iOS Liquid Glass<br/>für deine Website.</h1>
+    <p class="mt-4 max-w-xl mx-auto opacity-70">Transluzente Cards, Buttons, Tab Bars, Sheets, Toggles & Player im iOS-26-Look. Einfach CSS + JS einbinden, Klasse setzen, fertig.</p>
+    <div class="flex flex-wrap justify-center gap-3 mt-6">
+      <a href="#elemente" class="glass-btn glass-btn-primary glass-btn-lg">✨ Elemente ansehen</a>
+      <button class="glass-btn glass-btn-lg" data-lg-open="sheet">⤴ Sheet öffnen</button>
+      <button class="glass-btn glass-btn-lg" data-lg-open="modal">◉ Modal öffnen</button>
+    </div>
+    <div class="flex flex-wrap justify-center gap-2 mt-6">
+      <span class="glass-chip">🪟 backdrop-blur</span>
+      <span class="glass-chip">🌗 Hell / Dunkel</span>
+      <span class="glass-chip">📱 Responsive</span>
+      <span class="glass-chip">♿ Tastatur-fähig</span>
+    </div>
+  </header>
+
+  <!-- INSTALLATION -->
+  <section id="installation" class="glass mt-6 p-6 md:p-8">
+    <div class="doc-h2">1 · Installation (2 Minuten)</div>
+    <p class="doc-p mt-1">Drei Dateien, kein Build-Step. Tailwind ist optional, verbessert aber das Layout.</p>
+    <div class="grid md:grid-cols-3 gap-3 mt-5">
+      <div class="glass glass-clear p-4"><div class="font-bold">A · Dateien kopieren</div><div class="text-sm opacity-70 mt-1">Lege <code>src/liquid-glass.css</code> und <code>src/liquid-glass.js</code> in dein Projekt.</div></div>
+      <div class="glass glass-clear p-4"><div class="font-bold">B · Einbinden</div><div class="text-sm opacity-70 mt-1">CSS in den <code>&lt;head&gt;</code>, JS ans Ende vom <code>&lt;body&gt;</code>.</div></div>
+      <div class="glass glass-clear p-4"><div class="font-bold">C · Klasse nutzen</div><div class="text-sm opacity-70 mt-1">Z. B. <code>class="glass glass-card"</code> – fertig ist die Glas-Card.</div></div>
+    </div>
+    <div class="demo-label mt-6">In deinen &lt;head&gt; einfügen</div>
+    <div class="code-block"><button class="copy-btn">Kopieren</button><pre><code>&lt;!-- Tailwind (optional, für Layout) --&gt;
+&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;
+
+&lt;!-- Liquid Glass Kit --&gt;
+&lt;link rel="stylesheet" href="src/liquid-glass.css" /&gt;
+&lt;script src="src/liquid-glass.js" defer&gt;&lt;/script&gt;</code></pre></div>
+    <div class="demo-label mt-4">Theme / Dark Mode (optional)</div>
+    <div class="code-block"><button class="copy-btn">Kopieren</button><pre><code>&lt;!-- Hell ist Standard. Für Dunkel: --&gt;
+&lt;html data-theme="dark"&gt;
+
+&lt;!-- Umschalter irgendwo auf der Seite: --&gt;
+&lt;button class="glass-btn" data-lg-theme&gt;
+  &lt;span data-lg-theme-label&gt;🌙 Dunkel&lt;/span&gt;
+&lt;/button&gt;</code></pre></div>
+  </section>
+
+  <!-- VERWENDUNG -->
+  <section id="verwendung" class="glass mt-6 p-6 md:p-8">
+    <div class="doc-h2">2 · Verwendung – Grundprinzip</div>
+    <p class="doc-p mt-1">Jedes Element = <code>.glass</code> als Basis + eine Komponenten-Klasse. Tailwind-Klassen für Abstände/Layout einfach dazu mischen.</p>
+    <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;!-- Einfachste Card --&gt;
+&lt;div class="glass glass-card hoverable"&gt;
+  &lt;h3 class="glass-card-title"&gt;Hallo Glas 👋&lt;/h3&gt;
+  &lt;p class="glass-card-sub"&gt;Beschreibung hier.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Button --&gt;
+&lt;button class="glass-btn glass-btn-primary" onclick="LiquidGlass.toast('Hi','Funktioniert!')"&gt;
+  Speichern
+&lt;/button&gt;
+
+&lt;!-- Toast per JS auslösen (Container braucht id="lg-toast-stack") --&gt;
+&lt;div class="glass-toast-stack" id="lg-toast-stack"&gt;&lt;/div&gt;
+&lt;script&gt;LiquidGlass.toast('Titel', 'Nachricht', '🔔');&lt;/script&gt;</code></pre></div>
+    <div class="grid md:grid-cols-2 gap-3 mt-4 text-sm">
+      <div class="glass glass-clear p-4">💡 <b>Regel 1:</b> Glas braucht Hintergrund dahinter. Ohne bunten Verlauf/Wallpaper wirkt es flach – nutze <code>.ios-wallpaper</code> oder ein Bild.</div>
+      <div class="glass glass-clear p-4">💡 <b>Regel 2:</b> Nicht stapeln ohne Maß: max. 2 Glas-Ebenen übereinander, sonst wird Text unleserlich. Nutze dann <code>.glass-strong</code>.</div>
+    </div>
+  </section>
+
+  <!-- ELEMENTE -->
+  <div id="elemente" class="mt-10 mb-4 flex items-end justify-between">
+    <div><div class="doc-h2">3 · Elemente – Live + Code</div><p class="doc-p">Alles live. Klick dich durch, kopiere den Code per Button.</p></div>
+  </div>
+
+  <!-- Buttons -->
+  <section class="glass p-6 md:p-8">
+    <div class="demo-label">Buttons</div>
+    <div class="flex flex-wrap gap-3">
+      <button class="glass-btn glass-btn-primary">Primär</button>
+      <button class="glass-btn">Standard</button>
+      <button class="glass-btn glass-btn-destructive">Löschen</button>
+      <button class="glass-btn glass-btn-ghost">Ghost</button>
+      <button class="glass-btn glass-btn-sm">Klein</button>
+      <button class="glass-icon-btn">♥</button>
+      <button class="glass-icon-btn">✚</button>
+      <button class="glass-icon-btn active">🔔</button>
+    </div>
+    <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;button class="glass-btn glass-btn-primary"&gt;Primär&lt;/button&gt;
+&lt;button class="glass-btn"&gt;Standard&lt;/button&gt;
+&lt;button class="glass-btn glass-btn-destructive"&gt;Löschen&lt;/button&gt;
+&lt;button class="glass-btn glass-btn-ghost"&gt;Ghost&lt;/button&gt;
+&lt;button class="glass-icon-btn"&gt;♥&lt;/button&gt;</code></pre></div>
+  </section>
+
+  <!-- Cards + Chips -->
+  <section class="grid md:grid-cols-2 gap-6 mt-6">
+    <div class="glass p-6">
+      <div class="demo-label">Cards</div>
+      <div class="glass glass-card hoverable">
+        <div class="glass-card-title">Wetter in Berlin ☀️</div>
+        <div class="glass-card-sub">22° · Klar, leichte Brise</div>
+        <div class="glass-divider"></div>
+        <div class="flex gap-2">
+          <span class="glass-chip"><span class="glass-dot"></span> Live</span>
+          <span class="glass-chip">💧 40%</span>
+          <span class="glass-chip">💨 12 km/h</span>
+        </div>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass glass-card hoverable"&gt;
+  &lt;h3 class="glass-card-title"&gt;Wetter in Berlin ☀️&lt;/h3&gt;
+  &lt;p class="glass-card-sub"&gt;22° · Klar&lt;/p&gt;
+  &lt;div class="glass-divider"&gt;&lt;/div&gt;
+  &lt;span class="glass-chip"&gt;&lt;span class="glass-dot"&gt;&lt;/span&gt; Live&lt;/span&gt;
+&lt;/div&gt;</code></pre></div>
+    </div>
+    <div class="glass p-6">
+      <div class="demo-label">Segmented Control + Switch + Slider</div>
+      <div class="glass-segmented">
+        <button class="active" data-value="tag">Tag</button>
+        <button data-value="woche">Woche</button>
+        <button data-value="monat">Monat</button>
+      </div>
+      <div class="flex items-center justify-between mt-5">
+        <div><div class="font-semibold text-sm">WLAN</div><div class="text-xs opacity-60">Zuhause-5G</div></div>
+        <div class="glass-switch on"></div>
+      </div>
+      <div class="flex items-center justify-between mt-3">
+        <div><div class="font-semibold text-sm">Bluetooth</div><div class="text-xs opacity-60">Aus</div></div>
+        <div class="glass-switch"></div>
+      </div>
+      <div class="mt-4 flex items-center gap-3">
+        <span class="text-lg">🔆</span>
+        <input id="helligkeit" class="glass-slider" type="range" min="0" max="100" value="65" data-suffix="%" />
+        <span class="text-sm font-bold w-12" data-slider-out="helligkeit">65%</span>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass-segmented"&gt;
+  &lt;button class="active"&gt;Tag&lt;/button&gt;
+  &lt;button&gt;Woche&lt;/button&gt;
+  &lt;button&gt;Monat&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="glass-switch on"&gt;&lt;/div&gt;
+
+&lt;input id="helligkeit" class="glass-slider"
+  type="range" min="0" max="100" value="65" /&gt;</code></pre></div>
+    </div>
+  </section>
+
+  <!-- Tabbar + Navbar + Search -->
+  <section class="grid md:grid-cols-2 gap-6 mt-6">
+    <div class="glass p-6">
+      <div class="demo-label">iOS Tab Bar (klickbar)</div>
+      <div class="glass-tabbar">
+        <button class="glass-tab active"><span class="ico">🏠</span>Home</button>
+        <button class="glass-tab"><span class="ico">🔍</span>Suche</button>
+        <button class="glass-tab"><span class="ico">➕</span>Neu</button>
+        <button class="glass-tab"><span class="ico">🔔</span>Mitteilung</button>
+        <button class="glass-tab"><span class="ico">👤</span>Profil</button>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass-tabbar"&gt;
+  &lt;button class="glass-tab active"&gt;
+    &lt;span class="ico"&gt;🏠&lt;/span&gt;Home
+  &lt;/button&gt;
+  &lt;button class="glass-tab"&gt;
+    &lt;span class="ico"&gt;🔍&lt;/span&gt;Suche
+  &lt;/button&gt;
+&lt;/div&gt;</code></pre></div>
+    </div>
+    <div class="glass p-6">
+      <div class="demo-label">Suche + Filter (tippe zum Filtern)</div>
+      <div class="glass-search-wrap">
+        <span class="search-ico">🔍</span>
+        <input id="lg-search" class="glass-search" placeholder="Apps suchen …" />
+      </div>
+      <div class="flex flex-wrap gap-2 mt-3">
+        <span class="glass-chip" data-filter-item>📷 Kamera</span>
+        <span class="glass-chip" data-filter-item>💬 Nachrichten</span>
+        <span class="glass-chip" data-filter-item>🎵 Musik</span>
+        <span class="glass-chip" data-filter-item>🗺 Karten</span>
+        <span class="glass-chip" data-filter-item>⏰ Wecker</span>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass-search-wrap"&gt;
+  &lt;span class="search-ico"&gt;🔍&lt;/span&gt;
+  &lt;input id="lg-search" class="glass-search"
+    placeholder="Apps suchen …" /&gt;
+&lt;/div&gt;</code></pre></div>
+    </div>
+  </section>
+
+  <!-- Player + Control Center -->
+  <section class="grid md:grid-cols-2 gap-6 mt-6">
+    <div class="glass p-6">
+      <div class="demo-label">Musik Player</div>
+      <div class="glass glass-card flex items-center gap-4">
+        <div class="glass-artwork"></div>
+        <div class="flex-1">
+          <div class="font-bold text-sm">Midnight Drive</div>
+          <div class="text-xs opacity-60">Synthwave Collective</div>
+          <div class="glass-progress mt-2"><div id="lg-progress"></div></div>
+          <div class="flex items-center gap-2 mt-3">
+            <button class="glass-icon-btn" style="width:38px;height:38px;font-size:1rem">⏮</button>
+            <button class="glass-icon-btn active" id="lg-play" style="width:44px;height:44px">▶</button>
+            <button class="glass-icon-btn" style="width:38px;height:38px;font-size:1rem">⏭</button>
+          </div>
+        </div>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass glass-card flex items-center gap-4"&gt;
+  &lt;div class="glass-artwork"&gt;&lt;/div&gt;
+  &lt;div class="flex-1"&gt;
+    &lt;div class="font-bold text-sm"&gt;Midnight Drive&lt;/div&gt;
+    &lt;div class="glass-progress"&gt;&lt;div id="lg-progress"&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;button class="glass-icon-btn active" id="lg-play"&gt;▶&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre></div>
+    </div>
+    <div class="glass p-6">
+      <div class="demo-label">Control Center (klickbar)</div>
+      <div class="grid grid-cols-4 gap-3">
+        <div class="glass-tile active" data-toggle><span class="t-ico">📶</span>Mobil</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">🛜</span>WLAN</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">🔵</span>BT</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">✈️</span>Flug</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">🔦</span>Lampe</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">🌙</span>Fokus</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">🔒</span>Lock</div>
+        <div class="glass-tile" data-toggle><span class="t-ico">📸</span>Kamera</div>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;div class="glass-tile active" data-toggle&gt;
+  &lt;span class="t-ico"&gt;📶&lt;/span&gt;Mobil
+&lt;/div&gt;</code></pre></div>
+    </div>
+  </section>
+
+  <!-- Toast + Sheet/Modal + Form -->
+  <section class="grid md:grid-cols-2 gap-6 mt-6">
+    <div class="glass p-6">
+      <div class="demo-label">Toast / Notification & Dialoge</div>
+      <div class="flex flex-wrap gap-2">
+        <button class="glass-btn glass-btn-primary" data-lg-toast>🔔 Toast zeigen</button>
+        <button class="glass-btn" data-lg-open="sheet">⤴ Sheet</button>
+        <button class="glass-btn" data-lg-open="modal">◉ Modal</button>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;!-- Container einmalig einfügen --&gt;
+&lt;div class="glass-toast-stack" id="lg-toast-stack"&gt;&lt;/div&gt;
+&lt;div class="glass-overlay" id="lg-overlay"&gt;&lt;/div&gt;
+&lt;div class="glass-sheet" id="lg-sheet"&gt;…&lt;/div&gt;
+&lt;div class="glass-modal" id="lg-modal"&gt;…&lt;/div&gt;
+
+&lt;button data-lg-toast&gt;Toast&lt;/button&gt;
+&lt;button data-lg-open="sheet"&gt;Sheet&lt;/button&gt;
+&lt;button data-lg-open="modal"&gt;Modal&lt;/button&gt;
+&lt;button data-lg-close&gt;Schließen&lt;/button&gt;
+
+&lt;script&gt;
+  LiquidGlass.toast('Titel','Text','🔔');
+&lt;/script&gt;</code></pre></div>
+    </div>
+    <div class="glass p-6">
+      <div class="demo-label">Login Formular</div>
+      <div class="flex flex-col gap-3">
+        <input class="glass-input" placeholder="E-Mail" type="email" />
+        <input class="glass-input" placeholder="Passwort" type="password" />
+        <button class="glass-btn glass-btn-primary w-full" data-lg-toast>Anmelden</button>
+      </div>
+      <div class="code-block mt-4"><button class="copy-btn">Kopieren</button><pre><code>&lt;input class="glass-input" placeholder="E-Mail" /&gt;
+&lt;input class="glass-input" placeholder="Passwort"
+  type="password" /&gt;
+&lt;button class="glass-btn glass-btn-primary"&gt;
+  Anmelden
+&lt;/button&gt;</code></pre></div>
+    </div>
+  </section>
+
+  <!-- REFERENZ -->
+  <section id="referenz" class="glass mt-6 p-6 md:p-8">
+    <div class="doc-h2">4 · Klassen-Referenz</div>
+    <p class="doc-p mt-1">Alle Klassen auf einen Blick. Kombiniere <code>.glass</code> + Variante + Tailwind.</p>
+    <div class="overflow-x-auto mt-4">
+      <table class="w-full text-sm">
+        <thead><tr class="text-left opacity-60 text-xs uppercase tracking-wider"><th class="pb-2 pr-4">Klasse</th><th class="pb-2">Wirkung</th></tr></thead>
+        <tbody class="divide-y divide-white/20">
+          <tr><td class="py-2 pr-4 font-mono">.glass</td><td>Basis: Blur, Glanz, Border, Schatten</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-strong / .glass-clear</td><td>Stärker deckend / fast durchsichtig</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-card + .hoverable</td><td>Inhaltskarte mit Hover-Lift</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-btn + -primary / -destructive / -ghost / -sm / -lg</td><td>Pill-Buttons in iOS-Farben</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-icon-btn + .active</td><td>Runder Icon-Button, aktiv = blau</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-tabbar / .glass-tab(.active)</td><td>Untere iOS-Navigation</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-navbar</td><td>Sticky Top-Bar</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-segmented button(.active)</td><td>Segment-Umschalter</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-input / .glass-search</td><td>Textfeld / runde Suche</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-switch(.on)</td><td>iOS-Toggle (klickbar, Tastatur: Enter/Space)</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-slider</td><td>Glas-Slider</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-chip / .glass-dot</td><td>Pille + Statuspunkt</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-tile([data-toggle]) + .active</td><td>Control-Center-Kachel</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-toast-stack / .glass-toast</td><td>Benachrichtigungen oben</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-overlay / .glass-sheet / .glass-modal</td><td>Sheet & Dialog (mit data-lg-open/close)</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.glass-artwork / .glass-progress</td><td>Player-Cover + Fortschritt</td></tr>
+          <tr><td class="py-2 pr-4 font-mono">.ios-wallpaper</td><td>Fixierter iOS-Farbverlauf als Hintergrund</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid md:grid-cols-3 gap-3 mt-6 text-sm">
+      <div class="glass glass-clear p-4"><b>🎨 Eigene Farbe?</b><br/><span class="opacity-70">CSS-Variablen überschreiben: <code>--glass-bg</code>, <code>--glass-blue</code>, <code>--glass-radius</code>.</span></div>
+      <div class="glass glass-clear p-4"><b>⚡ Events?</b><br/><span class="opacity-70"><code>glass:switch</code> und <code>glass:segment</code> als CustomEvents auf dem Element.</span></div>
+      <div class="glass glass-clear p-4"><b>🖼 Kein Blur?</b><br/><span class="opacity-70"><code>backdrop-filter</code> braucht Hintergrund dahinter und HTTPS/localhost in manchen Browsern.</span></div>
+    </div>
+  </section>
+
+  <footer class="text-center text-sm opacity-60 mt-8">
+    Liquid Glass UI Kit · Lege <code>src/liquid-glass.css</code> + <code>src/liquid-glass.js</code> in dein Projekt und starte mit <code>class="glass"</code>.
+  </footer>
+</div>
+
+<script src="src/liquid-glass.js"></script>
+</body>
+</html>
